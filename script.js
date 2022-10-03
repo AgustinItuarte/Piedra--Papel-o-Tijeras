@@ -24,20 +24,22 @@ function rounds(pc, jugador){
 }
 
 function jugar(){
+    let puntosPc = 0;
+    let puntosJugador = 0;
+    let empate = 0;
     for (let i = 0; i < 5; i++){
         let opcionPc = pcEleccion();
-        let opcionJugador = "piedra";
+        let opcionJugador = prompt("Elije tu jugada: ");
         const resultado = rounds(opcionPc, opcionJugador);
-        let puntosPc = 0;
-        let puntosJugador = 0;
-        if (resultado.slice(0) == "G"){
+    
+        if (resultado[0] == "G"){
             puntosJugador++;
-        } else if (resultado.slice(0) == "P") {
+        } else if (resultado[0] == "P") {
             puntosPc++;
-        } else {
-            console.log("Empate");
+        } else if (resultado[0] == "E"){
+            empate++;
         }
-        console.log(`Puntos jugador: ${puntosJugador} / Puntos PC: ${puntosPc}`);
+        console.log(`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
     }
 }
 

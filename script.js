@@ -1,10 +1,10 @@
-function pcEleccion(){
+function pcEleccion(){ // Se encarga de devolver un valor random del array opciones.
     const opciones = ["Tijera", "Papel", "Piedra"]
     let num = Math.floor(Math.random() * 3);
     return opciones[num];
 }
 
-function rounds(pc, jugador){
+function rounds(pc, jugador){ // Es la logica detras de quien gana dependiendo del valor que se eliga
     if (pc.toUpperCase() == "TIJERA" && jugador.toUpperCase() == "PAPEL") {
         return "Perdiste, tijera gana a papel!!";
     } else if (pc.toUpperCase() == "PIEDRA" && jugador.toUpperCase() == "TIJERA") {
@@ -23,7 +23,7 @@ function rounds(pc, jugador){
     }
 }
 
-function jugar(){
+function jugar(){ // Suma los puntos y se encarga de decidir quien ha ganado el juego.
     let puntosPc = 0;
     let puntosJugador = 0;
     let empate = 0;
@@ -41,8 +41,16 @@ function jugar(){
         }
         console.log(`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
     }
+    if (puntosJugador > puntosPc){
+        return "Felicidades has ganado!!";
+    } else if (puntosPc > puntosJugador) {
+        return "Has perdido";
+    } else if (puntosJugador == puntosPc) {
+        return "Es empate";
+    } else {
+        return "Algo a salido mal";
+    }
+    
 }
 
 console.log(jugar());
-
-//console.log(rounds(opcionPc, opcionJugador));

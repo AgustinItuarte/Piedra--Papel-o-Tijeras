@@ -22,15 +22,29 @@ function rounds(pc, jugador){ // Es la logica detras de quien gana dependiendo d
         return "Empate";
     }
 }
+const buttons = document.querySelectorAll('button');
+const resultadosDiv = document.querySelector('.resultados');
+const puntuacion = document.querySelector('.puntuacion');
 
-function jugar(){ // Suma los puntos y se encarga de decidir quien ha ganado el juego.
+
+buttons.forEach(key => key.addEventListener('click', () => {
+    let eleccionJugador = key.className;
+    let eleccionPc = pcEleccion();
+    let resultado = `${rounds(eleccionPc, eleccionJugador)}`;
+    
+    resultadosDiv.textContent = resultado;
+
+    puntuacion.textContent = jugar(resultado);
+}))
+/*let opcionPc = pcEleccion();
+buttons.addEventListener('click', rounds(opcionPc, buttons));*/
+
+
+function jugar(resultado){ // Suma los puntos y se encarga de decidir quien ha ganado el juego.
     let puntosPc = 0;
     let puntosJugador = 0;
     let empate = 0;
     for (let i = 0; i < 5; i++){
-        let opcionPc = pcEleccion();
-        let opcionJugador = prompt("Elije tu jugada: ");
-        const resultado = rounds(opcionPc, opcionJugador);
     
         if (resultado[0] == "G"){
             puntosJugador++;
@@ -39,9 +53,11 @@ function jugar(){ // Suma los puntos y se encarga de decidir quien ha ganado el 
         } else if (resultado[0] == "E"){
             empate++;
         }
-        console.log(`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
+        return (`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
     }
-    
+}
+
+function conseguirPuntaje() {
     if (puntosJugador > puntosPc){
         return "Felicidades has ganado!!";
     } else if (puntosPc > puntosJugador) {
@@ -51,7 +67,5 @@ function jugar(){ // Suma los puntos y se encarga de decidir quien ha ganado el 
     } else {
         return "Algo a salido mal";
     }
-    
 }
 
-console.log(jugar());

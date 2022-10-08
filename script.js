@@ -41,6 +41,7 @@ function jugar(){ // Suma los puntos y se encarga de decidir quien ha ganado el 
         }
         console.log(`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
     }
+    
     if (puntosJugador > puntosPc){
         return "Felicidades has ganado!!";
     } else if (puntosPc > puntosJugador) {

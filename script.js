@@ -1,3 +1,10 @@
+const buttons = document.querySelectorAll('button');
+const resultadosDiv = document.querySelector('.resultados');
+const puntuacionDiv = document.querySelector('.puntuacion');
+let puntosPc = 0;
+let puntosJugador = 0;
+let empate = 0;
+
 function pcEleccion(){ // Se encarga de devolver un valor random del array opciones.
     const opciones = ["Tijera", "Papel", "Piedra"]
     let num = Math.floor(Math.random() * 3);
@@ -22,50 +29,44 @@ function rounds(pc, jugador){ // Es la logica detras de quien gana dependiendo d
         return "Empate";
     }
 }
-const buttons = document.querySelectorAll('button');
-const resultadosDiv = document.querySelector('.resultados');
-const puntuacion = document.querySelector('.puntuacion');
 
-
-buttons.forEach(key => key.addEventListener('click', () => {
+buttons.forEach(key => key.addEventListener('click', () => { // Guarda clases de los botones y pasa a funcion jugar(), y muestra en pantalla returns de jugar()
     let eleccionJugador = key.className;
     let eleccionPc = pcEleccion();
     let resultado = `${rounds(eleccionPc, eleccionJugador)}`;
     
     resultadosDiv.textContent = resultado;
+    puntuacionDiv.textContent = jugar(resultado);
 
-    puntuacion.textContent = jugar(resultado);
 }))
-/*let opcionPc = pcEleccion();
-buttons.addEventListener('click', rounds(opcionPc, buttons));*/
-
 
 function jugar(resultado){ // Suma los puntos y se encarga de decidir quien ha ganado el juego.
-    let puntosPc = 0;
-    let puntosJugador = 0;
-    let empate = 0;
-    for (let i = 0; i < 5; i++){
-    
-        if (resultado[0] == "G"){
-            puntosJugador++;
-        } else if (resultado[0] == "P") {
-            puntosPc++;
-        } else if (resultado[0] == "E"){
-            empate++;
-        }
-        return (`Puntos jugador: ${puntosJugador} / puntos PC: ${puntosPc} / Empate ${empate}`);
-    }
-}
 
-function conseguirPuntaje() {
-    if (puntosJugador > puntosPc){
-        return "Felicidades has ganado!!";
-    } else if (puntosPc > puntosJugador) {
+    if (resultado[0] == "G"){
+        puntosJugador++;
+    } else if (resultado[0] == "P") {
+        puntosPc++;
+    } else if (resultado[0] == "E"){
+        empate++;
+    }
+
+    if (puntosJugador !== 5 && puntosPc !== 5 && empate !== 5) {
+        return (`Puntos jugador: ${puntosJugador} | puntos PC: ${puntosPc} | Empate ${empate}`);
+    } else if (puntosJugador == 5) {
+        puntosPc = 0;
+        puntosJugador = 0;
+        empate = 0;
+        return "Felicidades has ganado!!!";
+    } else if (puntosPc == 5) {
+        puntosPc = 0;
+        puntosJugador = 0;
+        empate = 0;
         return "Has perdido";
-    } else if (puntosJugador == puntosPc) {
-        return "Es empate";
-    } else {
-        return "Algo a salido mal";
+    } else if (empate == 5) {
+        puntosPc = 0;
+        puntosJugador = 0;
+        empate = 0;
+        return "Es empate"
     }
-}
 
+}

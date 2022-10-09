@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll('button');
 const resultadosDiv = document.querySelector('.resultados');
 const puntuacionDiv = document.querySelector('.puntuacion');
+resultadosDiv.textContent = "Selecciona tu jugada";
+puntuacionDiv.textContent = "Puntos jugador: | puntos PC:  | Empate:";
 let puntosPc = 0;
 let puntosJugador = 0;
 let empate = 0;
@@ -51,7 +53,7 @@ function jugar(resultado){ // Suma los puntos y se encarga de decidir quien ha g
     }
 
     if (puntosJugador !== 5 && puntosPc !== 5 && empate !== 5) {
-        return (`Puntos jugador: ${puntosJugador} | puntos PC: ${puntosPc} | Empate ${empate}`);
+        return (`Puntos jugador: ${puntosJugador} | puntos PC: ${puntosPc} | Empate: ${empate}`);
     } else if (puntosJugador == 5) {
         puntosPc = 0;
         puntosJugador = 0;

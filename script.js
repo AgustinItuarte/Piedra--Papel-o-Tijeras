@@ -1,7 +1,7 @@
 const buttons = document.querySelectorAll('button');
 const resultadosDiv = document.querySelector('.resultados');
 const puntuacionDiv = document.querySelector('.puntuacion');
-resultadosDiv.textContent = "Selecciona tu jugada";
+resultadosDiv.textContent = "Selecciona tu jugada:";
 puntuacionDiv.textContent = "Puntos jugador: | puntos PC:  | Empate:";
 let puntosPc = 0;
 let puntosJugador = 0;
